@@ -1,33 +1,28 @@
-import java.awt.event.ActionEvent; 
-import java.awt.event.ActionListener;
-import java.awt.event.KeyEvent;
 import java.awt.Color;
 import java.awt.Container;
 import java.awt.Font;
-
+import java.awt.GridLayout;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.JTextArea;
-import javax.swing.JTextField;
 
 public class Game {
 	
-	 JFrame window, window1;
+	JFrame window;
 	Container con;
- Container con1;
-	 JPanel titleNamePanel,titleNamepanel1, startButtonPanel;
-	 JLabel titleNameLabel,titleNameLabel1 ;
-	 JTextArea opening = new JTextArea("You are on a truck going to your best friend, Marty B’s, "
-			+ "house  when you look out your driver's window to see something weird. You stop your truck to go out and see what it is and you notice that it is a humanoid figure in the woods", 10,30);
- JScrollPane jsp1,
- jsp= new JScrollPane(opening);
-	
+	JPanel titleNamePanel, startButtonPanel, mainTextPanel, choiceButtonPanel;
+	JLabel titleNameLabel;
 	Font titleFont = new Font("Times New Roman", Font.PLAIN, 73);
-	 Font normalFont = new Font("Times New Roman", Font.PLAIN, 30);
-	JButton startButton;
+	Font normalFont = new Font("Times New Roman", Font.PLAIN, 28);
+	JButton startButton, choice1, choice2, choice3, choice4;
+	JTextArea mainTextArea;
+	
+	TitleScreenHandler tsHandler = new TitleScreenHandler();
 
 	public static void main(String[] args) {
 		// TODO Auto-generated method stub
@@ -37,7 +32,7 @@ public class Game {
 	public Game(){
 		
 		window = new JFrame();
-		window.setSize(800,600);//Size of window
+		window.setSize(1280,720);//Size of window
 		window.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);//Able to close program
 		window.getContentPane().setBackground(Color.black);//Colour of window
 		window.setLayout(null);//Disable default layout for game
@@ -45,57 +40,94 @@ public class Game {
 		con = window.getContentPane();//Base layer
 		
 		titleNamePanel = new JPanel();//Panel initialization 
-		titleNamePanel.setBounds(100, 100, 600, 150);//Size of panel
+		titleNamePanel.setBounds(330, 100, 600, 150);//Size of panel
 		titleNamePanel.setBackground(Color.black);//Colour of panel
 		titleNameLabel = new JLabel("Zombie Apocalypse");//Text for title to be placed on panel
 		titleNameLabel.setForeground(Color.white);//Colour of Text
 		titleNameLabel.setFont(titleFont);//Apply font to text
 		
 		startButtonPanel = new JPanel();//Initialization of button frame
-		startButtonPanel.setBounds(300, 400, 200, 100);//Size of button frame
+		startButtonPanel.setBounds(530, 400, 200, 100);//Size of button frame
 		startButtonPanel.setBackground(Color.black);//Colour of button frame
 		
 		startButton = new JButton("Begin Game");//Button initialization 
 		startButton.setBackground(Color.black);//Colour of button background
 		startButton.setForeground(Color.white);//Colour of text on top of button
 		startButton.setFont(normalFont);//Apply font to button text
+		startButton.addActionListener(tsHandler);//Forwards to "TitleScreenHandler" ActionListener when button is clicked
 		startButton.setFocusPainted(false);//Disable button focus
 		//Alternate way to remove focus: "startButton.setFocusable(false);"
 		
 		titleNamePanel.add(titleNameLabel);//Place text on Panel
 		startButtonPanel.add(startButton);//Place button on panel
 		
-		con.add(titleNamePanel);//Base layer
-		con.add(startButtonPanel);//Button layer
-		startButton.setMnemonic(KeyEvent.VK_D);
-		 startButton.setActionCommand("disable");
-		 startButton.addActionListener(new Action());//allows button to access code below
+		con.add(titleNamePanel);//Add panel to container, (Text panel Layer)
+		con.add(startButtonPanel);//Add panel to container, (Button layer)
 	}
-		public class Action implements ActionListener{
-			 public void actionPerformed (ActionEvent e) {
-				window1 = new JFrame();
-				window1.setSize(800,600);//Size of window
-				window1.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);//Able to close program
-				window1.getContentPane().setBackground(Color.black);//Colour of window
-				window1.setLayout(null);//Disable default layout for game
-				window1.setVisible(true);//To see the window
-				con1 = window1.getContentPane();//Base layer
-				titleNamepanel1 = new JPanel();//Panel initialization 
-				titleNamepanel1.setBounds(20, 20, 780, 500);//Size of panel
-				titleNamepanel1.setBackground(Color.black);//Colour of panel
-				titleNamepanel1.add(opening);//adding textfield
-				opening.setForeground(Color.black);//setting colour
-				opening.setFont(normalFont);//font style
-				opening.setBounds(20,20,700 ,700);//textbox size
-				
-				
-				window1.add(titleNamepanel1);//adding the panel to the frame
-				
-				
+	
+	public void createGameScreen(){
+		
+		titleNamePanel.setVisible(false);//Disables this panel when createGameScreen is called
+		startButtonPanel.setVisible(false);//Disables this panel when createGameScreen is called
+		
+		mainTextPanel = new JPanel();//Text panel initialization 
+		mainTextPanel.setBounds(50, 100, 1190, 200);//Size of panel
+		mainTextPanel.setBackground(Color.black);//Colour of panel
+		con.add(mainTextPanel);//Add panel to container, (Text panel Layer)
+		
+		mainTextArea = new JTextArea("You are on a truck going to your best friend Marty B’s house when you look out your driver's window to see something weird. "
+				+ "You stop your truck to go out and see what it is and you notice that it is a humanoid figure in the woods");//Placement for text
+		mainTextArea.setBounds(100, 100, 1150, 250);//Size of area
+		mainTextArea.setBackground(Color.black);//Colour of area
+		mainTextArea.setForeground(Color.white);//Colour of text in area
+		mainTextArea.setFont(normalFont);//Apply font to text
+		mainTextArea.setLineWrap(true);//Apply a text wrap function
+		mainTextArea.setWrapStyleWord(true);//Apply a specific (word) text wrap function
+		JScrollPane scrollPane = new JScrollPane(mainTextArea);//******THE IMPLEMENTATION OF THIS FEATURE IS STILL IN PROGRESS******
+		mainTextPanel.add(mainTextArea);//Add text area to Text panel, (Text area layer)
+		
+		choiceButtonPanel = new JPanel();//Initialization of button frame
+		choiceButtonPanel.setBounds(210, 350, 800, 250);//Size of panel
+		choiceButtonPanel.setBackground(Color.black);//Colour of panel
+		choiceButtonPanel.setLayout(new GridLayout(4,1));//Formats buttons to four individual rows
+		con.add(choiceButtonPanel);//Add panel to container, (Button layer)
+		
+		choice1 = new JButton("Choice 1");//Button initialization
+		choice1.setBackground(Color.black);//Colour of button background
+		choice1.setForeground(Color.white);//Colour of text on top of button
+		choice1.setFont(normalFont);//Apply font to text on button
+		choice1.setFocusPainted(false);//Disable button focus
+		choiceButtonPanel.add(choice1);//Add Button on panel
+		
+		choice2 = new JButton("Choice 2");//Button initialization
+		choice2.setBackground(Color.black);//Colour of button background
+		choice2.setForeground(Color.white);//Colour of text on top of button
+		choice2.setFont(normalFont);//Apply font to text on button
+		choice2.setFocusPainted(false);//Disable button focus
+		choiceButtonPanel.add(choice2);//Add Button on panel
+		
+		choice3 = new JButton("Choice 3");//Button initialization
+		choice3.setBackground(Color.black);//Colour of button background
+		choice3.setForeground(Color.white);//Colour of text on top of button
+		choice3.setFont(normalFont);//Apply font to text on button
+		choice3.setFocusPainted(false);//Disable button focus
+		choiceButtonPanel.add(choice3);//Add Button on panel
+		
+		choice4 = new JButton("Choice 4");//Button initialization
+		choice4.setBackground(Color.black);//Colour of button background
+		choice4.setForeground(Color.white);//Colour of text on top of button
+		choice4.setFont(normalFont);//Apply font to text on button
+		choice4.setFocusPainted(false);//Disable button focus
+		choiceButtonPanel.add(choice4);//Add Button on panel
+	}
+	
+	public class TitleScreenHandler implements ActionListener{//Interface for receiving an action event (Button press)
+		
+		public void actionPerformed(ActionEvent event){//Indicates that an action has occurred
 			
-		 }
-		
-		
-	}
+			createGameScreen();//This is called after action has been detected
+	  }
+   }	
 }
+
 
