@@ -1,5 +1,4 @@
-
-import java.awt.event.ActionEvent;
+import java.awt.event.ActionEvent; 
 import java.awt.event.ActionListener;
 import java.awt.event.KeyEvent;
 import java.awt.Color;
@@ -10,18 +9,24 @@ import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
+import javax.swing.JScrollPane;
+import javax.swing.JTextArea;
 import javax.swing.JTextField;
 
 public class Game {
 	
-	static JFrame window, window1;
+	 JFrame window, window1;
 	Container con;
-	static Container con1;
-	static JPanel titleNamePanel,titleNamepanel1, startButtonPanel;
-	static JLabel titleNameLabel,titleNameLabel1 ;
-	static JTextField opening = new JTextField("");
-	static Font titleFont = new Font("Times New Roman", Font.PLAIN, 73);
-	static Font normalFont = new Font("Times New Roman", Font.PLAIN, 30);
+ Container con1;
+	 JPanel titleNamePanel,titleNamepanel1, startButtonPanel;
+	 JLabel titleNameLabel,titleNameLabel1 ;
+	 JTextArea opening = new JTextArea("You are on a truck going to your best friend, Marty B’s, "
+			+ "house  when you look out your driver's window to see something weird. You stop your truck to go out and see what it is and you notice that it is a humanoid figure in the woods", 10,30);
+ JScrollPane jsp1,
+ jsp= new JScrollPane(opening);
+	
+	Font titleFont = new Font("Times New Roman", Font.PLAIN, 73);
+	 Font normalFont = new Font("Times New Roman", Font.PLAIN, 30);
 	JButton startButton;
 
 	public static void main(String[] args) {
@@ -66,7 +71,7 @@ public class Game {
 		 startButton.setActionCommand("disable");
 		 startButton.addActionListener(new Action());//allows button to access code below
 	}
-		 static class Action implements ActionListener{
+		public class Action implements ActionListener{
 			 public void actionPerformed (ActionEvent e) {
 				window1 = new JFrame();
 				window1.setSize(800,600);//Size of window
@@ -79,9 +84,11 @@ public class Game {
 				titleNamepanel1.setBounds(20, 20, 780, 500);//Size of panel
 				titleNamepanel1.setBackground(Color.black);//Colour of panel
 				titleNamepanel1.add(opening);//adding textfield
-				opening.setForeground(Color.white);//setting colour
+				opening.setForeground(Color.black);//setting colour
 				opening.setFont(normalFont);//font style
-				opening.setBounds(20,20,700 ,700);
+				opening.setBounds(20,20,700 ,700);//textbox size
+				
+				
 				window1.add(titleNamepanel1);//adding the panel to the frame
 				
 				
@@ -91,3 +98,4 @@ public class Game {
 		
 	}
 }
+
