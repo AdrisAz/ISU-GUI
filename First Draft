@@ -64,7 +64,6 @@ public class Game {
 		con.add(titleNamePanel);//Add panel to container, (Text panel Layer)
 		con.add(startButtonPanel);//Add panel to container, (Button layer)
 		startButton.setMnemonic(KeyEvent.VK_D);
-		startButton.setActionCommand("disable");
 	}
 	
 	public void createGameScreen(){
