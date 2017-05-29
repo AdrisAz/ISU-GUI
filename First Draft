@@ -4,6 +4,8 @@ import java.awt.Font;
 import java.awt.GridLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.KeyEvent;
+
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
@@ -36,7 +38,7 @@ public class Game {
 		window.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);//Able to close program
 		window.getContentPane().setBackground(Color.black);//Colour of window
 		window.setLayout(null);//Disable default layout for game
-		window.setVisible(true);//To see the window
+		
 		con = window.getContentPane();//Base layer
 		
 		titleNamePanel = new JPanel();//Panel initialization 
@@ -56,14 +58,13 @@ public class Game {
 		startButton.setFont(normalFont);//Apply font to button text
 		startButton.addActionListener(tsHandler);//Forwards to "TitleScreenHandler" ActionListener when button is clicked
 		startButton.setFocusPainted(false);//Disable button focus
-		//Alternate way to remove focus: "startButton.setFocusable(false);"
 		
 		titleNamePanel.add(titleNameLabel);//Place text on Panel
 		startButtonPanel.add(startButton);//Place button on panel
 		
 		con.add(titleNamePanel);//Add panel to container, (Text panel Layer)
 		con.add(startButtonPanel);//Add panel to container, (Button layer)
-		startButton.setMnemonic(KeyEvent.VK_D);
+		window.setVisible(true);//To see the window
 	}
 	
 	public void createGameScreen(){
@@ -130,5 +131,3 @@ public class Game {
 	  }
    }	
 }
-
-
