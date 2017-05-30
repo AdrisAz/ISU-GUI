@@ -16,15 +16,20 @@ import javax.swing.JTextArea;
 public class Game {
 	
 	JFrame window;
-	Container con;
-	JPanel titleNamePanel, startButtonPanel, mainTextPanel, choiceButtonPanel;
+	Container con, con1;
+	JPanel titleNamePanel, startButtonPanel, mainTextPanel, choiceButtonPanel, mainTextPanel1,choiceButtonPanel1,mainTextPanel2,choiceButtonPanel2,mainTextPanel3,choiceButtonPanel3,mainTextPanel4,choiceButtonPanel4,mainTextPanel5,choiceButtonPanel5;
 	JLabel titleNameLabel;
 	Font titleFont = new Font("Times New Roman", Font.PLAIN, 73);
 	Font normalFont = new Font("Times New Roman", Font.PLAIN, 28);
-	JButton startButton, choice1, choice2, choice3, choice4;
-	JTextArea mainTextArea;
+	JButton startButton, choice1, choice2, choice3, choice4, choice5, choice6,choice7,choice8,choice9,choice10,choice11,choice12,choice13,choice14,choice15,choice16,choice17,choice18,choice19,choice20,continue1;
+	JTextArea mainTextArea,mainTextArea1,mainTextArea2,mainTextArea3,mainTextArea4,mainTextArea5;
 	
 	TitleScreenHandler tsHandler = new TitleScreenHandler();
+	TitleScreenHandler1 tsHandler1 = new TitleScreenHandler1();
+	TitleScreenHandler2 tsHandler2 = new TitleScreenHandler2();
+	TitleScreenHandler3 tsHandler3 = new TitleScreenHandler3();
+	TitleScreenHandler4 tsHandler4 = new TitleScreenHandler4();
+	TitleScreenHandler5 tsHandler5 = new TitleScreenHandler5();
 
 	public static void main(String[] args) {
 		// TODO Auto-generated method stub
@@ -73,13 +78,12 @@ public class Game {
 		startButtonPanel.setVisible(false);//Disables this panel when createGameScreen is called
 		
 		mainTextPanel = new JPanel();//Text panel initialization 
-		mainTextPanel.setBounds(50, 100, 1190, 200);//Size of panel
+		mainTextPanel.setBounds(50, 50, 1190, 250);//Size of panel
 		mainTextPanel.setBackground(Color.black);//Colour of panel
 		con.add(mainTextPanel);//Add panel to container, (Text panel Layer)
 		
-		mainTextArea = new JTextArea("You are on a truck going to your best friend Marty B’s house when you look out your driver's window to see something weird. "
-				+ "You stop your truck to go out and see what it is and you notice that it is a humanoid figure in the woods");//Placement for text
-		mainTextArea.setBounds(100, 100, 1150, 250);//Size of area
+		mainTextArea = new JTextArea("You are on a truck going to your best friend, Marty B’s, house  when you look out your driver's window to see something weird. You stop your truck to go out and see what it is and you notice that it is a humanoid figure in the woods (insert image). You go to see if he is alright when you notice a foul smell and then see his literal dead stare looking right into your eyes, you see that has a large piece of his shoulder bitten off with a disgusting amount of exposed skin. You ask him what happened but he only answers with a moan. You continue to stare back at the figure, then out of nowhere he attacks.");//Placement for text
+		mainTextArea.setBounds(50, 100, 1000, 250);//Size of area
 		mainTextArea.setBackground(Color.black);//Colour of area
 		mainTextArea.setForeground(Color.white);//Colour of text in area
 		mainTextArea.setFont(normalFont);//Apply font to text
@@ -89,45 +93,352 @@ public class Game {
 		mainTextPanel.add(mainTextArea);//Add text area to Text panel, (Text area layer)
 		
 		choiceButtonPanel = new JPanel();//Initialization of button frame
-		choiceButtonPanel.setBounds(210, 350, 800, 250);//Size of panel
+		choiceButtonPanel.setBounds(220, 350, 800, 250);//Size of panel
 		choiceButtonPanel.setBackground(Color.black);//Colour of panel
-		choiceButtonPanel.setLayout(new GridLayout(4,1));//Formats buttons to four individual rows
+		choiceButtonPanel.setLayout(new GridLayout(1,1));//Formats buttons to four individual rows
 		con.add(choiceButtonPanel);//Add panel to container, (Button layer)
+		continue1 = new JButton("Continue");//Button initialization
+		continue1.setBackground(Color.black);//Colour of button background
+		continue1.setForeground(Color.white);//Colour of text on top of button
+		continue1.setFont(normalFont);//Apply font to text on button
+		continue1.setFocusPainted(false);//Disable button focus
+		continue1.addActionListener(tsHandler1);
+		choiceButtonPanel.add(continue1);//Add Button on panel
+	}
+public void firstscreen(){
+		choiceButtonPanel.setVisible(false);
+		mainTextArea.setVisible(false);
+		mainTextPanel.setVisible(false);
 		
-		choice1 = new JButton("Choice 1");//Button initialization
+		
+		mainTextPanel1 = new JPanel();//Text panel initialization 
+		mainTextPanel1.setBounds(50, 50, 1190, 250);//Size of panel
+		mainTextPanel1.setBackground(Color.black);//Colour of panel
+		con.add(mainTextPanel1);//Add panel to container, (Text panel Layer)
+		
+		mainTextArea1 = new JTextArea("He starts running at you with that same dead stare locked onto you as his mouth is wide open. You run as fast as you can back to your truck, lock the door and speed away with no hesitation. When you are in the truck you keep asking yourself what that guy was doing, then you realize that even though you never thought the day would come, you realize that the world has gone into a ZOMBIE APOCALYPSE. You keep driving to Marty B’s house with just being 10 minutes and you see that the road is blocked by hundreds of humanoid figures similarly to the one that tried to eat you earlier (insert image). You step on the brakes before getting any closer and…..You have to make a choice now, do you:");//placement for text
+		mainTextArea1.setBounds(50, 50, 1190, 500);//Size of area
+		mainTextArea1.setBackground(Color.black);//Colour of area
+		mainTextArea1.setForeground(Color.white);//Colour of text in area
+		mainTextArea1.setFont(normalFont);//Apply font to text
+		mainTextArea1.setLineWrap(true);//Apply a text wrap function
+		mainTextArea1.setWrapStyleWord(true);//Apply a specific (word) text wrap function
+		JScrollPane scrollPane = new JScrollPane(mainTextArea1);//******THE IMPLEMENTATION OF THIS FEATURE IS STILL IN PROGRESS******
+		mainTextPanel1.add(mainTextArea1);//Add text area to Text panel, (Text area layer)
+		
+		choiceButtonPanel1 = new JPanel();//Initialization of button frame
+		choiceButtonPanel1.setBounds(50, 300, 1190, 200);//Size of panel
+		choiceButtonPanel1.setBackground(Color.black);//Colour of panel
+		choiceButtonPanel1.setLayout(new GridLayout(4,1));//Formats buttons to four individual rows
+		choiceButtonPanel1.setVisible(true);
+		con.add(choiceButtonPanel1);//Add panel to container, (Button layer)
+		
+		
+		choice1 = new JButton("Try to drive through the zombies you leave the house ");//Button initialization
 		choice1.setBackground(Color.black);//Colour of button background
 		choice1.setForeground(Color.white);//Colour of text on top of button
 		choice1.setFont(normalFont);//Apply font to text on button
 		choice1.setFocusPainted(false);//Disable button focus
-		choiceButtonPanel.add(choice1);//Add Button on panel
-		
-		choice2 = new JButton("Choice 2");//Button initialization
+		choice1.setVisible(true);
+		choiceButtonPanel1.add(choice1);//Add Button on panel
+		choice1.addActionListener(tsHandler2);
+
+		choice2 = new JButton("Turn your truck around and try to find a different route");//Button initialization
 		choice2.setBackground(Color.black);//Colour of button background
 		choice2.setForeground(Color.white);//Colour of text on top of button
 		choice2.setFont(normalFont);//Apply font to text on button
 		choice2.setFocusPainted(false);//Disable button focus
-		choiceButtonPanel.add(choice2);//Add Button on panel
+		choice2.setVisible(true);
+		choice2.addActionListener(tsHandler3);
+		choiceButtonPanel1.add(choice2);//Add Button on panel
 		
-		choice3 = new JButton("Choice 3");//Button initialization
+		choice3 = new JButton("Get out of your car and try to make it on foot by walking around the big mob");//Button initialization
 		choice3.setBackground(Color.black);//Colour of button background
 		choice3.setForeground(Color.white);//Colour of text on top of button
 		choice3.setFont(normalFont);//Apply font to text on button
 		choice3.setFocusPainted(false);//Disable button focus
-		choiceButtonPanel.add(choice3);//Add Button on panel
+		choice3.setVisible(true);
+		choice3.addActionListener(tsHandler4);
+		choiceButtonPanel1.add(choice3);//Add Button on panel
 		
-		choice4 = new JButton("Choice 4");//Button initialization
+		choice4 = new JButton("Try to fight through the zombies ");//Button initialization
 		choice4.setBackground(Color.black);//Colour of button background
 		choice4.setForeground(Color.white);//Colour of text on top of button
 		choice4.setFont(normalFont);//Apply font to text on button
 		choice4.setFocusPainted(false);//Disable button focus
-		choiceButtonPanel.add(choice4);//Add Button on panel
-	}
+		choice4.setVisible(true);
+		choice4.addActionListener(tsHandler5);
+		choiceButtonPanel1.add(choice4);}//Add Button on panel
+	
 	
 	public class TitleScreenHandler implements ActionListener{//Interface for receiving an action event (Button press)
-		
 		public void actionPerformed(ActionEvent event){//Indicates that an action has occurred
-			
 			createGameScreen();//This is called after action has been detected
-	  }
-   }	
+		}
+	}
+	public class TitleScreenHandler1 implements ActionListener{//Interface for receiving an action event (Button press)
+		public void actionPerformed(ActionEvent event){//Indicates that an action has occurred
+			firstscreen();//This is called after action has been detected
+		}
+	}
+	public void secondscreen(){
+		choiceButtonPanel1.setVisible(false);
+		mainTextArea1.setVisible(false);
+		mainTextPanel1.setVisible(false);
+		mainTextPanel2 = new JPanel();//Text panel initialization 
+		mainTextPanel2.setBounds(50, 50, 1190, 250);//Size of panel
+		mainTextPanel2.setBackground(Color.black);//Colour of panel
+		con.add(mainTextPanel2);//Add panel to container, (Text panel Layer)
+		
+		mainTextArea2 = new JTextArea("You stomp on the gas peddle as hard as you can and try to bust through the zombies. You manage to get out the other end but they end up ripping out the exhaust pipe and part of the  hood. Do you:");//placement for text
+		mainTextArea2.setBounds(50, 50, 1190, 500);//Size of area
+		mainTextArea2.setBackground(Color.black);//Colour of area
+		mainTextArea2.setForeground(Color.white);//Colour of text in area
+		mainTextArea2.setFont(normalFont);//Apply font to text
+		mainTextArea2.setLineWrap(true);//Apply a text wrap function
+		mainTextArea2.setWrapStyleWord(true);//Apply a specific (word) text wrap function
+		JScrollPane scrollPane = new JScrollPane(mainTextArea2);//******THE IMPLEMENTATION OF THIS FEATURE IS STILL IN PROGRESS******
+		mainTextPanel2.add(mainTextArea2);//Add text area to Text panel, (Text area layer)
+		
+		choiceButtonPanel2 = new JPanel();//Initialization of button frame
+		choiceButtonPanel2.setBounds(50, 300, 1190, 200);//Size of panel
+		choiceButtonPanel2.setBackground(Color.black);//Colour of panel
+		choiceButtonPanel2.setLayout(new GridLayout(4,1));//Formats buttons to four individual rows
+		choiceButtonPanel2.setVisible(true);
+		con.add(choiceButtonPanel2);//Add panel to container, (Button layer)
+		choice5 = new JButton("Keep on driving for as long as you can");//Button initialization
+		choice5.setBackground(Color.black);//Colour of button background
+		choice5.setForeground(Color.white);//Colour of text on top of button
+		choice5.setFont(normalFont);//Apply font to text on button
+		choice5.setFocusPainted(false);//Disable button focus
+		choice5.setVisible(true);
+		choiceButtonPanel2.add(choice5);//Add Button on panel
+		
+		choice6 = new JButton("Hold up in your truck hoping someone comes that can rescue you  ");//Button initialization
+		choice6.setBackground(Color.black);//Colour of button background
+		choice6.setForeground(Color.white);//Colour of text on top of button
+		choice6.setFont(normalFont);//Apply font to text on button
+		choice6.setFocusPainted(false);//Disable button focus
+		choice6.setVisible(true);
+		choiceButtonPanel2.add(choice6);//Add Button on panel
+		
+		choice7 = new JButton("Leave the truck and walk on foot");//Button initialization
+		choice7.setBackground(Color.black);//Colour of button background
+		choice7.setForeground(Color.white);//Colour of text on top of button
+		choice7.setFont(normalFont);//Apply font to text on button
+		choice7.setFocusPainted(false);//Disable button focus
+		choice7.setVisible(true);
+		choiceButtonPanel2.add(choice7);//Add Button on panel
+		
+		choice8 = new JButton("Try and find parts for your truck");//Button initialization
+		choice8.setBackground(Color.black);//Colour of button background
+		choice8.setForeground(Color.white);//Colour of text on top of button
+		choice8.setFont(normalFont);//Apply font to text on button
+		choice8.setFocusPainted(false);//Disable button focus
+		choice8.setVisible(true);
+		choiceButtonPanel2.add(choice8);}//Add Button on panel
+	public class TitleScreenHandler2 implements ActionListener{//Interface for receiving an action event (Button press)
+		public void actionPerformed(ActionEvent event){//Indicates that an action has occurred
+			secondscreen();//This is called after action has been detected
+			
+			}
+	}
+	public void thirdscreen(){
+		choiceButtonPanel1.setVisible(false);
+		mainTextArea1.setVisible(false);
+		mainTextPanel1.setVisible(false);
+		mainTextPanel3 = new JPanel();//Text panel initialization 
+		mainTextPanel3.setBounds(50, 50, 1190, 250);//Size of panel
+		mainTextPanel3.setBackground(Color.black);//Colour of panel
+		con.add(mainTextPanel3);//Add panel to container, (Text panel Layer)
+		
+		mainTextArea3 = new JTextArea("you turn your truck around but as you do the zombies notice the movement and sound of your truck. You look in your rear view mirror and you start to see the herd of zombies coming towards you. You hit the gas as hard as you can and drive away from the zombies. ");//placement for text
+		mainTextArea3.setBounds(50, 50, 1190, 500);//Size of area
+		mainTextArea3.setBackground(Color.black);//Colour of area
+		mainTextArea3.setForeground(Color.white);//Colour of text in area
+		mainTextArea3.setFont(normalFont);//Apply font to text
+		mainTextArea3.setLineWrap(true);//Apply a text wrap function
+		mainTextArea3.setWrapStyleWord(true);//Apply a specific (word) text wrap function
+		JScrollPane scrollPane = new JScrollPane(mainTextArea1);//******THE IMPLEMENTATION OF THIS FEATURE IS STILL IN PROGRESS******
+		mainTextPanel3.add(mainTextArea3);//Add text area to Text panel, (Text area layer)
+		
+		choiceButtonPanel3 = new JPanel();//Initialization of button frame
+		choiceButtonPanel3.setBounds(50, 300, 1190, 200);//Size of panel
+		choiceButtonPanel3.setBackground(Color.black);//Colour of panel
+		choiceButtonPanel3.setLayout(new GridLayout(4,1));//Formats buttons to four individual rows
+		choiceButtonPanel3.setVisible(true);
+		con.add(choiceButtonPanel3);//Add panel to container, (Button layer)
+		choice9 = new JButton("Option A");//Button initialization
+		choice9.setBackground(Color.black);//Colour of button background
+		choice9.setForeground(Color.white);//Colour of text on top of button
+		choice9.setFont(normalFont);//Apply font to text on button
+		choice9.setFocusPainted(false);//Disable button focus
+		choice9.setVisible(true);
+		choiceButtonPanel3.add(choice9);//Add Button on panel
+		
+		choice10 = new JButton("Option B");//Button initialization
+		choice10.setBackground(Color.black);//Colour of button background
+		choice10.setForeground(Color.white);//Colour of text on top of button
+		choice10.setFont(normalFont);//Apply font to text on button
+		choice10.setFocusPainted(false);//Disable button focus
+		choice10.setVisible(true);
+		choiceButtonPanel3.add(choice10);//Add Button on panel
+		
+		choice11 = new JButton("Option C");//Button initialization
+		choice11.setBackground(Color.black);//Colour of button background
+		choice11.setForeground(Color.white);//Colour of text on top of button
+		choice11.setFont(normalFont);//Apply font to text on button
+		choice11.setFocusPainted(false);//Disable button focus
+		choice11.setVisible(true);
+		choiceButtonPanel3.add(choice11);//Add Button on panel
+		
+		choice12 = new JButton("Option D");//Button initialization
+		choice12.setBackground(Color.black);//Colour of button background
+		choice12.setForeground(Color.white);//Colour of text on top of button
+		choice12.setFont(normalFont);//Apply font to text on button
+		choice12.setFocusPainted(false);//Disable button focus
+		choice12.setVisible(true);
+		choiceButtonPanel3.add(choice12);//Add Button on panel
+		
+	}
+
+	public class TitleScreenHandler3 implements ActionListener{//Interface for receiving an action event (Button press)
+		public void actionPerformed(ActionEvent event){//Indicates that an action has occurred
+			thirdscreen();//This is called after action has been detected
+			
+		
+}
+}
+	public void fourthscreen(){
+		choiceButtonPanel1.setVisible(false);
+		mainTextArea1.setVisible(false);
+		mainTextPanel1.setVisible(false);
+		mainTextPanel4 = new JPanel();//Text panel initialization 
+		mainTextPanel4.setBounds(50, 50, 1190, 250);//Size of panel
+		mainTextPanel4.setBackground(Color.black);//Colour of panel
+		con.add(mainTextPanel4);//Add panel to container, (Text panel Layer)
+		
+		mainTextArea4 = new JTextArea("Story Not Made Yet");//placement for text
+		mainTextArea4.setBounds(50, 50, 1190, 500);//Size of area
+		mainTextArea4.setBackground(Color.black);//Colour of area
+		mainTextArea4.setForeground(Color.white);//Colour of text in area
+		mainTextArea4.setFont(normalFont);//Apply font to text
+		mainTextArea4.setLineWrap(true);//Apply a text wrap function
+		mainTextArea4.setWrapStyleWord(true);//Apply a specific (word) text wrap function
+		JScrollPane scrollPane = new JScrollPane(mainTextArea1);//******THE IMPLEMENTATION OF THIS FEATURE IS STILL IN PROGRESS******
+		mainTextPanel4.add(mainTextArea4);//Add text area to Text panel, (Text area layer)
+		
+		choiceButtonPanel4 = new JPanel();//Initialization of button frame
+		choiceButtonPanel4.setBounds(50, 300, 1190, 200);//Size of panel
+		choiceButtonPanel4.setBackground(Color.black);//Colour of panel
+		choiceButtonPanel4.setLayout(new GridLayout(4,1));//Formats buttons to four individual rows
+		choiceButtonPanel4.setVisible(true);
+		con.add(choiceButtonPanel4);//Add panel to container, (Button layer)
+		choice13= new JButton("Option A");//Button initialization
+		choice13.setBackground(Color.black);//Colour of button background
+		choice13.setForeground(Color.white);//Colour of text on top of button
+		choice13.setFont(normalFont);//Apply font to text on button
+		choice13.setFocusPainted(false);//Disable button focus
+		choice13.setVisible(true);
+		choiceButtonPanel4.add(choice13);//Add Button on panel
+		
+		choice14 = new JButton("Option B");//Button initialization
+		choice14.setBackground(Color.black);//Colour of button background
+		choice14.setForeground(Color.white);//Colour of text on top of button
+		choice14.setFont(normalFont);//Apply font to text on button
+		choice14.setFocusPainted(false);//Disable button focus
+		choice14.setVisible(true);
+		choiceButtonPanel4.add(choice14);//Add Button on panel
+		
+		choice15 = new JButton("Option C");//Button initialization
+		choice15.setBackground(Color.black);//Colour of button background
+		choice15.setForeground(Color.white);//Colour of text on top of button
+		choice15.setFont(normalFont);//Apply font to text on button
+		choice15.setFocusPainted(false);//Disable button focus
+		choice15.setVisible(true);
+		choiceButtonPanel4.add(choice15);//Add Button on panel
+		
+		choice16 = new JButton("Option D");//Button initialization
+		choice16.setBackground(Color.black);//Colour of button background
+		choice16.setForeground(Color.white);//Colour of text on top of button
+		choice16.setFont(normalFont);//Apply font to text on button
+		choice16.setFocusPainted(false);//Disable button focus
+		choice16.setVisible(true);
+		choiceButtonPanel4.add(choice16);//Add Button on panel
+		
+	}
+
+	public class TitleScreenHandler4 implements ActionListener{//Interface for receiving an action event (Button press)
+		public void actionPerformed(ActionEvent event){//Indicates that an action has occurred
+			fourthscreen();//This is called after action has been detected
+			
+		
+}
+}
+	public void fifthscreen(){
+		choiceButtonPanel1.setVisible(false);
+		mainTextArea1.setVisible(false);
+		mainTextPanel1.setVisible(false);
+		mainTextPanel5 = new JPanel();//Text panel initialization 
+		mainTextPanel5.setBounds(50, 50, 1190, 250);//Size of panel
+		mainTextPanel5.setBackground(Color.black);//Colour of panel
+		con.add(mainTextPanel5);//Add panel to container, (Text panel Layer)
+		
+		mainTextArea5= new JTextArea("You get out of your truck and look around for a weapon to help you fight off the zombies. Then, you see three items");//placement for text
+		mainTextArea5.setBounds(50, 50, 1190, 500);//Size of area
+		mainTextArea5.setBackground(Color.black);//Colour of area
+		mainTextArea5.setForeground(Color.white);//Colour of text in area
+		mainTextArea5.setFont(normalFont);//Apply font to text
+		mainTextArea5.setLineWrap(true);//Apply a text wrap function
+		mainTextArea5.setWrapStyleWord(true);//Apply a specific (word) text wrap function
+		JScrollPane scrollPane = new JScrollPane(mainTextArea1);//******THE IMPLEMENTATION OF THIS FEATURE IS STILL IN PROGRESS******
+		mainTextPanel5.add(mainTextArea5);//Add text area to Text panel, (Text area layer)
+		
+		choiceButtonPanel5 = new JPanel();//Initialization of button frame
+		choiceButtonPanel5.setBounds(50, 300, 1190, 200);//Size of panel
+		choiceButtonPanel5.setBackground(Color.black);//Colour of panel
+		choiceButtonPanel5.setLayout(new GridLayout(4,1));//Formats buttons to four individual rows
+		choiceButtonPanel5.setVisible(true);
+		con.add(choiceButtonPanel5);//Add panel to container, (Button layer)
+		choice17= new JButton("A small knife that is covered in blood and stuck to a nearby tree");//Button initialization
+		choice17.setBackground(Color.black);//Colour of button background
+		choice17.setForeground(Color.white);//Colour of text on top of button
+		choice17.setFont(normalFont);//Apply font to text on button
+		choice17.setFocusPainted(false);//Disable button focus
+		choice17.setVisible(true);
+		choiceButtonPanel5.add(choice17);//Add Button on panel
+		
+		choice18 = new JButton("A handgun that is in a bush but you don’t know if it is loaded ");//Button initialization
+		choice18.setBackground(Color.black);//Colour of button background
+		choice18.setForeground(Color.white);//Colour of text on top of button
+		choice18.setFont(normalFont);//Apply font to text on button
+		choice18.setFocusPainted(false);//Disable button focus
+		choice18.setVisible(true);
+		choiceButtonPanel5.add(choice18);//Add Button on panel
+		
+		choice19 = new JButton("A old broom stick that is sharpened at one end");//Button initialization
+		choice19.setBackground(Color.black);//Colour of button background
+		choice19.setForeground(Color.white);//Colour of text on top of button
+		choice19.setFont(normalFont);//Apply font to text on button
+		choice19.setFocusPainted(false);//Disable button focus
+		choice19.setVisible(true);
+		choiceButtonPanel5.add(choice19);//Add Button on panel
+		
+		choice20 = new JButton("Option D???");//Button initialization
+		choice20.setBackground(Color.black);//Colour of button background
+		choice20.setForeground(Color.white);//Colour of text on top of button
+		choice20.setFont(normalFont);//Apply font to text on button
+		choice20.setFocusPainted(false);//Disable button focus
+		choice20.setVisible(true);
+		choiceButtonPanel5.add(choice20);//Add Button on panel
+		
+	}
+
+	public class TitleScreenHandler5 implements ActionListener{//Interface for receiving an action event (Button press)
+		public void actionPerformed(ActionEvent event){//Indicates that an action has occurred
+			fifthscreen();//This is called after action has been detected
+			
+		
+}
+}
 }
