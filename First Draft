@@ -52,7 +52,6 @@ public class Game {
 		startButtonPanel = new JPanel();//Initialization of button frame
 		startButtonPanel.setBounds(530, 400, 200, 100);//Size and location of button frame
 		startButtonPanel.setBackground(Color.black);//Colour of button frame
-		
 		startButton = new JButton("Begin Game");//Button initialization 
 		startButton.setBackground(Color.black);//Colour of button background
 		startButton.setForeground(Color.white);//Colour of text on top of button
@@ -66,6 +65,7 @@ public class Game {
 		
 		con.add(titleNamePanel);//Add panel to container, (Text panel Layer)
 		con.add(startButtonPanel);//Add panel to container, (Button layer)
+		window.setVisible(true);//To see the window
 	}
 	
 	public void createGameScreen(){
@@ -184,10 +184,10 @@ public class Game {
 	public void talkmarty(){//Initializes the talkmarty screen method
 		position = "talkmarty";//Indication of which method is currently running
 		mainTextArea.setText("<html>Hello PEEPUL!!<BR>Oh sorry, I did not realize that it's just you, (USERNAME)<BR>Would you like to watch an episode of 'Just for laughs' with me?<html>");//Placement for text
-		choice1.setText("RUN");//Display text on button
-		choice2.setText("RUN");//Display text on button
-		choice3.setText("RUN");//Display text on button
-		choice4.setText("RUN");//Display text on button
+		choice1.setText("RUNNNNNNNN!!!!!!!");//Display text on button
+		choice2.setText("RUNNNNNNNN!!!!!!!");//Display text on button
+		choice3.setText("RUNNNNNNNN!!!!!!!");//Display text on button
+		choice4.setText("RUNNNNNNNN!!!!!!!");//Display text on button
 	}
 	
 	
@@ -231,10 +231,10 @@ public class Game {
 				break;
 			case "talkmarty"://indicates which method is being processed
 				switch(yourChoice){//Determines which choice button was clicked
-				case "c1": martyshouse(); break;//Result of choice 1 button click
-				case "c2": martyshouse(); break;//Result of choice 2 button click
-				case "c3": martyshouse(); break;//Result of choice 3 button click
-				case "c4": martyshouse(); break;//Result of choice 4 button click
+				case "c1": main(); break;//Result of choice 1 button click
+				case "c2": main(); break;//Result of choice 2 button click
+				case "c3": main(); break;//Result of choice 3 button click
+				case "c4": main(); break;//Result of choice 4 button click
 				}
 			}
 		}
