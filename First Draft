@@ -127,8 +127,8 @@ public class Game {
 		choice4.setActionCommand("c4");//Identifies to program which specific choice this button correlates to
 		choiceButtonPanel.add(choice4);//Add Button on panel
 		
-		playerPanel = new JPanel();//Panel initialization 
-		playerPanel.setBounds(400, 20, 500, 50);//Size and location of panel
+		playerPanel = new JPanel();//Panel initialization to hold player information
+		playerPanel.setBounds(300, 20, 600, 50);//Size and location of panel
 		playerPanel.setBackground(Color.black);//Colour of panel
 		playerPanel.setLayout(new GridLayout(1,4));//Layout of panel to four columns
 		con.add(playerPanel);//Add panel to container
@@ -143,7 +143,7 @@ public class Game {
 		hpLabelNumber.setForeground(Color.white);//Font colour
 		playerPanel.add(hpLabelNumber);//Add label to panel
 		
-		weaponLabel = new JLabel("Weapon: ");//Text for weapon label to be placed
+		weaponLabel = new JLabel("Weapon:");//Text for weapon label to be placed
 		weaponLabel.setFont(normalFont);//Font selection
 		weaponLabel.setForeground(Color.white);//Font colour
 		playerPanel.add(weaponLabel);//Add label to panel
@@ -166,6 +166,9 @@ public class Game {
 		main();//Directs to main method
 	}
 	public void main(){//Initializes the playerSetup method
+		choice2.setVisible(false);//Sets the buttons to invisible
+		choice3.setVisible(false);//Sets the buttons to invisible
+		choice4.setVisible(false);//Sets the buttons to invisible
 		position = "main";//Indication of which method is currently running
 		mainTextArea.setText("You are on a truck going to your best friend Marty B’s house.");//Placement for text
 		choice1.setText("Continue");//Display text on button
@@ -173,23 +176,84 @@ public class Game {
 		choice3.setText("");//Display text on button
 		choice4.setText("");//Display text on button
 	}
-	public void martyshouse(){//Initializes the Marty screen method
-		position = "martyshouse";//Indication of which method is currently running
+	public void martysHouse(){//Initializes the martysHouse screen method
+		choice2.setVisible(true);//Sets the buttons to visible
+		choice3.setVisible(true);//Sets the buttons to visible
+		choice4.setVisible(true);//Sets the buttons to visible
+		position = "martysHouse";//Indication of which method is currently running
 		mainTextArea.setText("<html>You are in the Wizard's house.<BR>Marty is on his chair charging his really dying hard 9V batteries.<BR>What do you do?<html>");//Placement for text
 		choice1.setText("Approach the wizard carefully");//Display text on button
 		choice2.setText("Attack him with a fully charged 9V battery");//Display text on button
 		choice3.setText("Disconnect his power");//Display text on button
 		choice4.setText("Run back out while you can");//Display text on button
 	}
-	public void talkmarty(){//Initializes the talkmarty screen method
-		position = "talkmarty";//Indication of which method is currently running
+	public void talkMarty(){//Initializes the talkMarty screen method
+		position = "talkMarty";//Indication of which method is currently running
 		mainTextArea.setText("<html>Hello PEEPUL!!<BR>Oh sorry, I did not realize that it's just you, (USERNAME)<BR>Would you like to watch an episode of 'Just for laughs' with me?<html>");//Placement for text
 		choice1.setText("RUNNNNNNNN!!!!!!!");//Display text on button
 		choice2.setText("RUNNNNNNNN!!!!!!!");//Display text on button
 		choice3.setText("RUNNNNNNNN!!!!!!!");//Display text on button
 		choice4.setText("RUNNNNNNNN!!!!!!!");//Display text on button
 	}
-	
+	public void attackMarty(){//Initializes the attackMarty screen method
+		choice2.setVisible(false);//Sets the buttons to invisible
+		choice3.setVisible(false);//Sets the buttons to invisible
+		choice4.setVisible(false);//Sets the buttons to invisible
+		position = "attackMarty";//Indication of which method is currently running
+		mainTextArea.setText("<html>Ok, but like SERIOUSLY?<BR>Do you ACTUALLY think you can beat the MASTER WIZAAARRD, MARTY B. HIMSELF?<BR>(You sustain the wraith of Marty B's powers and lose 3 health points)<html>");//Placement for text
+		playerHP = playerHP -3;//Change of integer HP value
+		hpLabelNumber.setText(""+playerHP);//Display updated HP value
+		choice1.setText("Continue");//Display text on button
+		choice2.setText("");//Display text on button
+		choice3.setText("");//Display text on button
+		choice4.setText("");//Display text on button
+	}
+	public void forest(){//Initializes the forest screen method
+		choice2.setVisible(true);//Sets the buttons to visible
+		choice3.setVisible(true);//Sets the buttons to visible
+		choice4.setVisible(true);//Sets the buttons to visible
+		position = "forest";//Indication of which method is currently running
+		mainTextArea.setText("<html>You run as fast as possible deep into the forest behind Marty B's cabin.<BR>Which way do you proceed to run?<html>");//Placement for text
+		choice1.setText("Just keep running straight far away from Marty B. as possible");//Display text on button
+		choice2.setText("Turn left and continue running");//Display text on button
+		choice3.setText("Turn right and continue running");//Display text on button
+		choice4.setText("I regret my decision and think Marty B. should be given a chance");//Display text on button
+	}
+	public void straightRun(){//Initializes the straightRun screen method
+		choice2.setVisible(false);//Sets the buttons to invisible
+		choice3.setVisible(false);//Sets the buttons to invisible
+		choice4.setVisible(false);//Sets the buttons to invisible
+		position = "straightRun";//Indication of which method is currently running
+		mainTextArea.setText("<html>You find a Monster drink possibly left behind by the last person that ventured here.<BR>(You gain 2 health points)<html>");//Placement for text
+		playerHP = playerHP +2;//Change of integer HP value
+		hpLabelNumber.setText(""+playerHP);//Display updated HP value
+		choice1.setText("Resume your running");//Display text on button
+		choice2.setText("");//Display text on button
+		choice3.setText("");//Display text on button
+		choice4.setText("");//Display text on button
+		
+	}
+	public void leftRun(){//Initializes the leftRun screen method
+		choice2.setVisible(true);//Sets the buttons to visible
+		choice3.setVisible(true);//Sets the buttons to visible
+		choice4.setVisible(true);//Sets the buttons to visible
+		position = "leftRun";//Indication of which method is currently running
+		mainTextArea.setText("<html>As you run for your life, you notice something silver glimering under some leaves on the ground.<BR> (You have obtained a magical sword)<html>");//Placement for text
+		weapon = "Magic sword";//Set player's new weapon
+		weaponLabelName.setText(weapon);//Display weapon text on label
+		choice1.setText("");//Display text on button
+		choice2.setText("");//Display text on button
+		choice3.setText("");//Display text on button
+		choice4.setText("");//Display text on button
+	}
+	public void rightRun(){//Initializes the rightRun screen method
+		position = "rightRun";//Indication of which method is currently running
+		mainTextArea.setText("<html><html>");//Placement for text
+		choice1.setText("");//Display text on button
+		choice2.setText("");//Display text on button
+		choice3.setText("");//Display text on button
+		choice4.setText("");//Display text on button
+	}
 	
 	
 	
@@ -206,35 +270,51 @@ public class Game {
 			createGameScreen();//This is called after action has been detected
 	  }
    }
-	public class ChoiceHandler implements ActionListener{
+	public class ChoiceHandler implements ActionListener{//Interface for receiving an action event (Button press)
 		
-		public void actionPerformed(ActionEvent event){
+		public void actionPerformed(ActionEvent event){//Indicates that an action has occurred
 			
 			String yourChoice = event.getActionCommand();//Recognizes which choice button is clicked
 			
 			switch(position){//Determines which method is being processed
-			case "main"://indicates which method is being processed
+			case "main"://Indicates which method is being processed
 				switch(yourChoice){//Determines which choice button was clicked
-				case "c1": martyshouse(); break;//Result of choice 1 button click
+				case "c1": martysHouse(); break;//Result of choice 1 button click
 				case "c2": break;//Result of choice 2 button click
 				case "c3": break;//Result of choice 3 button click
 				case "c4": break;//Result of choice 4 button click
 				} 
 				break;
-			case "martyshouse"://indicates which method is being processed
+			case "martysHouse"://Indicates which method is being processed
 				switch(yourChoice){//Determines which choice button was clicked
-				case "c1": talkmarty(); break;//Result of choice 1 button click
-				case "c2": break;//Result of choice 2 button click
+				case "c1": talkMarty(); break;//Result of choice 1 button click
+				case "c2": attackMarty(); break;//Result of choice 2 button click
 				case "c3": break;//Result of choice 3 button click
-				case "c4": break;//Result of choice 4 button click
+				case "c4": forest(); break;//Result of choice 4 button click
 				} 
 				break;
-			case "talkmarty"://indicates which method is being processed
+			case "talkMarty"://Indicates which method is being processed
 				switch(yourChoice){//Determines which choice button was clicked
 				case "c1": main(); break;//Result of choice 1 button click
 				case "c2": main(); break;//Result of choice 2 button click
 				case "c3": main(); break;//Result of choice 3 button click
 				case "c4": main(); break;//Result of choice 4 button click
+				}
+				break;
+			case "attackMarty":
+				switch(yourChoice){
+				case "c1":  break;//Result of choice 1 button click
+				case "c2":  break;//Result of choice 2 button click
+				case "c3":  break;//Result of choice 3 button click
+				case "c4":  break;//Result of choice 4 button click
+				}
+				break;
+			case "forest":
+				switch(yourChoice){
+				case "c1": straightRun(); break;//Result of choice 1 button click
+				case "c2": leftRun(); break;//Result of choice 2 button click
+				case "c3":  break;//Result of choice 3 button click
+				case "c4": attackMarty(); break;//Result of choice 4 button click
 				}
 			}
 		}
