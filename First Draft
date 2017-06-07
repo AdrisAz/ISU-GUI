@@ -4,24 +4,25 @@ import java.awt.Font;
 import java.awt.GridLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
-import javax.swing.JTextArea;
 
 public class Game {
 	
 	JFrame window;
 	Container con;
-	JPanel titleNamePanel, startButtonPanel, mainTextPanel, choiceButtonPanel, playerPanel;
-	JLabel titleNameLabel, hpLabel, hpLabelNumber, weaponLabel, weaponLabelName, mainTextArea;
-	Font titleFont = new Font("Times New Roman", Font.PLAIN, 73);
-	Font normalFont = new Font("Times New Roman", Font.PLAIN, 28);
+	JPanel titleNamePanel, startButtonPanel, mainTextPanel, choiceButtonPanel, playerPanel, imagePanel, hpPanel, weaponPanel;
+	JLabel titleNameLabel, hpLabel, hpLabelNumber, weaponLabel, weaponLabelName, mainTextArea, imageLabel;
+	Font titleFont = new Font("Times New Roman", Font.BOLD, 73);
+	Font normalFont = new Font("Times New Roman", Font.BOLD, 28);
 	JButton startButton, choice1, choice2, choice3, choice4;
 	int playerHP;
 	String weapon, position;
+	ImageIcon image;
 	
 	TitleScreenHandler tsHandler = new TitleScreenHandler();
 	ChoiceHandler choiceHandler = new ChoiceHandler();
@@ -43,7 +44,7 @@ public class Game {
 		con = window.getContentPane();//Base layer
 		
 		titleNamePanel = new JPanel();//Panel initialization 
-		titleNamePanel.setBounds(330, 100, 600, 150);//Size and location of panel
+		titleNamePanel.setBounds(330, 100, 650, 150);//Size and location of panel
 		titleNamePanel.setBackground(Color.black);//Colour of panel
 		titleNameLabel = new JLabel("Zombie Apocalypse");//Text for title to be placed on panel
 		titleNameLabel.setForeground(Color.white);//Colour of Text
@@ -75,6 +76,7 @@ public class Game {
 		mainTextPanel = new JPanel();//Text panel initialization 
 		mainTextPanel.setBounds(20, 100, 1150, 200);//Size and location of panel
 		mainTextPanel.setBackground(Color.black);//Colour of panel
+		mainTextPanel.setOpaque(false);//Set panel to transparent
 		con.add(mainTextPanel);//Add panel to container, (Text panel Layer)
 		
 		mainTextArea = new JLabel();//Initializes placement for text
@@ -87,13 +89,13 @@ public class Game {
 		
 		choiceButtonPanel = new JPanel();//Initialization of button frame
 		choiceButtonPanel.setBounds(210, 350, 800, 250);//Size and location of panel
-		choiceButtonPanel.setBackground(Color.black);//Colour of panel
+		choiceButtonPanel.setOpaque(false);//Set panel to transparent
 		choiceButtonPanel.setLayout(new GridLayout(4,1));//Formats buttons to four individual rows
 		con.add(choiceButtonPanel);//Add panel to container, (Button layer)
 		
 		choice1 = new JButton("Choice 1");//Button initialization
-		choice1.setBackground(Color.black);//Colour of button background
-		choice1.setForeground(Color.white);//Colour of text on top of button
+		choice1.setOpaque(false);//Set button to transparent
+		choice1.setForeground(Color.black);//Colour of text on top of button
 		choice1.setFont(normalFont);//Apply font to text on button
 		choice1.setFocusPainted(false);//Disable button focus
 		choice1.addActionListener(choiceHandler);//Forwards to "ChoiceHandler" ActionListener when button is clicked
@@ -101,8 +103,8 @@ public class Game {
 		choiceButtonPanel.add(choice1);//Add Button on panel
 		
 		choice2 = new JButton("Choice 2");//Button initialization
-		choice2.setBackground(Color.black);//Colour of button background
-		choice2.setForeground(Color.white);//Colour of text on top of button
+		choice2.setOpaque(false);//Set button to transparent
+		choice2.setForeground(Color.black);//Colour of text on top of button
 		choice2.setFont(normalFont);//Apply font to text on button
 		choice2.setFocusPainted(false);//Disable button focus
 		choice2.addActionListener(choiceHandler);//Forwards to "ChoiceHandler" ActionListener when button is clicked
@@ -110,8 +112,8 @@ public class Game {
 		choiceButtonPanel.add(choice2);//Add Button on panel
 		
 		choice3 = new JButton("Choice 3");//Button initialization
-		choice3.setBackground(Color.black);//Colour of button background
-		choice3.setForeground(Color.white);//Colour of text on top of button
+		choice3.setOpaque(false);//Set button to transparent
+		choice3.setForeground(Color.black);//Colour of text on top of button
 		choice3.setFont(normalFont);//Apply font to text on button
 		choice3.setFocusPainted(false);//Disable button focus
 		choice3.addActionListener(choiceHandler);//Forwards to "ChoiceHandler" ActionListener when button is clicked
@@ -119,16 +121,31 @@ public class Game {
 		choiceButtonPanel.add(choice3);//Add Button on panel
 		
 		choice4 = new JButton("Choice 4");//Button initialization
-		choice4.setBackground(Color.black);//Colour of button background
-		choice4.setForeground(Color.white);//Colour of text on top of button
+		choice4.setOpaque(false);//Set button to transparent
+		choice4.setForeground(Color.black);//Colour of text on top of button
 		choice4.setFont(normalFont);//Apply font to text on button
 		choice4.setFocusPainted(false);//Disable button focus
 		choice4.addActionListener(choiceHandler);//Forwards to "ChoiceHandler" ActionListener when button is clicked
 		choice4.setActionCommand("c4");//Identifies to program which specific choice this button correlates to
 		choiceButtonPanel.add(choice4);//Add Button on panel
 		
+		hpPanel = new JPanel();
+		hpPanel.setBounds(300, 20, 800, 50);//Size and location of panel
+		hpPanel.setOpaque(false);//Set panel to transparent
+		hpPanel.setBackground(Color.black);//Colour of panel
+		hpPanel.setLayout(new GridLayout(1,4));//Layout of panel to four columns
+		con.add(hpPanel);//Add panel to container
+		
+		weaponPanel = new JPanel();
+		weaponPanel.setBounds(640, 20, 800, 50);//Size and location of panel
+		weaponPanel.setOpaque(false);//Set panel to transparent
+		weaponPanel.setBackground(Color.black);//Colour of panel
+		weaponPanel.setLayout(new GridLayout(1,4));//Layout of panel to four columns
+		con.add(weaponPanel);//Add panel to container
+		
 		playerPanel = new JPanel();//Panel initialization to hold player information
-		playerPanel.setBounds(300, 20, 600, 50);//Size and location of panel
+		playerPanel.setBounds(370, 20, 800, 50);//Size and location of panel
+		playerPanel.setOpaque(false);//Set panel to transparent
 		playerPanel.setBackground(Color.black);//Colour of panel
 		playerPanel.setLayout(new GridLayout(1,4));//Layout of panel to four columns
 		con.add(playerPanel);//Add panel to container
@@ -136,7 +153,7 @@ public class Game {
 		hpLabel = new JLabel("HP:");//Text for HP label to be placed
 		hpLabel.setFont(normalFont);//Font selection
 		hpLabel.setForeground(Color.white);//Font colour
-		playerPanel.add(hpLabel);//Add HP text to  panel
+		hpPanel.add(hpLabel);//Add HP text to  panel
 		
 		hpLabelNumber = new JLabel();//Text for HP value to be placed
 		hpLabelNumber.setFont(normalFont);//Font selection
@@ -146,12 +163,25 @@ public class Game {
 		weaponLabel = new JLabel("Weapon:");//Text for weapon label to be placed
 		weaponLabel.setFont(normalFont);//Font selection
 		weaponLabel.setForeground(Color.white);//Font colour
-		playerPanel.add(weaponLabel);//Add label to panel
+		weaponPanel.add(weaponLabel);//Add label to panel
 		
 		weaponLabelName = new JLabel();//Text for weapon name to be placed
 		weaponLabelName.setFont(normalFont);//Font selection
 		weaponLabelName.setForeground(Color.white);//Font colour
 		playerPanel.add(weaponLabelName);//Add label to panel
+		
+		imagePanel = new JPanel();
+		imagePanel.setBounds(1, 1, 1280, 720);
+		imagePanel.setBackground(Color.white);
+		
+		imageLabel = new JLabel();
+		
+		image = new ImageIcon(".//res//dforest.jpg");
+		
+		imageLabel.setIcon(image);
+		imagePanel.add(imageLabel);
+		
+		con.add(imagePanel);
 		
 		playerSetup();//Directs program to playerSetup method
 		
@@ -163,13 +193,15 @@ public class Game {
 		hpLabelNumber.setText("" + playerHP);//Display integer HP value
 		
 		
-		main();//Directs to main method
+		mainScreen();//Directs to main method
 	}
-	public void main(){//Initializes the playerSetup method
+	public void mainScreen(){//Initializes the playerSetup method
+		playerPanel.validate();
+		playerPanel.repaint();
 		choice2.setVisible(false);//Sets the buttons to invisible
 		choice3.setVisible(false);//Sets the buttons to invisible
 		choice4.setVisible(false);//Sets the buttons to invisible
-		position = "main";//Indication of which method is currently running
+		position = "mainScreen";//Indication of which method is currently running
 		mainTextArea.setText("You are on a truck going to your best friend Marty B’s house.");//Placement for text
 		choice1.setText("Continue");//Display text on button
 		choice2.setText("");//Display text on button
@@ -177,17 +209,25 @@ public class Game {
 		choice4.setText("");//Display text on button
 	}
 	public void martysHouse(){//Initializes the martysHouse screen method
+		playerPanel.validate();
+		playerPanel.repaint();
+		imagePanel.setBounds(1, -100, 1920, 1080);
+		image = new ImageIcon(".//res//dhouse.jpg");
+		imageLabel.setIcon(image);
 		choice2.setVisible(true);//Sets the buttons to visible
 		choice3.setVisible(true);//Sets the buttons to visible
 		choice4.setVisible(true);//Sets the buttons to visible
 		position = "martysHouse";//Indication of which method is currently running
-		mainTextArea.setText("<html>You are in the Wizard's house.<BR>Marty is on his chair charging his really dying hard 9V batteries.<BR>What do you do?<html>");//Placement for text
+		mainTextArea.setText("<html>You are in the Wizard's house.<BR>Marty is on his chair surrounded by zombies charging his really dying hard 9V batteries.<BR>What do you do?<html>");//Placement for text
 		choice1.setText("Approach the wizard carefully");//Display text on button
 		choice2.setText("Attack him with a fully charged 9V battery");//Display text on button
 		choice3.setText("Disconnect his power");//Display text on button
 		choice4.setText("Run back out while you can");//Display text on button
+		
 	}
 	public void talkMarty(){//Initializes the talkMarty screen method
+		playerPanel.validate();
+		playerPanel.repaint();
 		position = "talkMarty";//Indication of which method is currently running
 		mainTextArea.setText("<html>Hello PEEPUL!!<BR>Oh sorry, I did not realize that it's just you, (USERNAME)<BR>Would you like to watch an episode of 'Just for laughs' with me?<html>");//Placement for text
 		choice1.setText("RUNNNNNNNN!!!!!!!");//Display text on button
@@ -196,6 +236,8 @@ public class Game {
 		choice4.setText("RUNNNNNNNN!!!!!!!");//Display text on button
 	}
 	public void attackMarty(){//Initializes the attackMarty screen method
+		playerPanel.validate();
+		playerPanel.repaint();
 		choice2.setVisible(false);//Sets the buttons to invisible
 		choice3.setVisible(false);//Sets the buttons to invisible
 		choice4.setVisible(false);//Sets the buttons to invisible
@@ -209,6 +251,8 @@ public class Game {
 		choice4.setText("");//Display text on button
 	}
 	public void forest(){//Initializes the forest screen method
+		playerPanel.validate();
+		playerPanel.repaint();
 		choice2.setVisible(true);//Sets the buttons to visible
 		choice3.setVisible(true);//Sets the buttons to visible
 		choice4.setVisible(true);//Sets the buttons to visible
@@ -220,6 +264,8 @@ public class Game {
 		choice4.setText("I regret my decision and think Marty B. should be given a chance");//Display text on button
 	}
 	public void straightRun(){//Initializes the straightRun screen method
+		playerPanel.validate();
+		playerPanel.repaint();
 		choice2.setVisible(false);//Sets the buttons to invisible
 		choice3.setVisible(false);//Sets the buttons to invisible
 		choice4.setVisible(false);//Sets the buttons to invisible
@@ -234,6 +280,8 @@ public class Game {
 		
 	}
 	public void leftRun(){//Initializes the leftRun screen method
+		playerPanel.validate();
+		playerPanel.repaint();
 		choice2.setVisible(true);//Sets the buttons to visible
 		choice3.setVisible(true);//Sets the buttons to visible
 		choice4.setVisible(true);//Sets the buttons to visible
@@ -247,6 +295,8 @@ public class Game {
 		choice4.setText("");//Display text on button
 	}
 	public void rightRun(){//Initializes the rightRun screen method
+		playerPanel.validate();
+		playerPanel.repaint();
 		position = "rightRun";//Indication of which method is currently running
 		mainTextArea.setText("<html><html>");//Placement for text
 		choice1.setText("");//Display text on button
@@ -277,7 +327,7 @@ public class Game {
 			String yourChoice = event.getActionCommand();//Recognizes which choice button is clicked
 			
 			switch(position){//Determines which method is being processed
-			case "main"://Indicates which method is being processed
+			case "mainScreen"://Indicates which method is being processed
 				switch(yourChoice){//Determines which choice button was clicked
 				case "c1": martysHouse(); break;//Result of choice 1 button click
 				case "c2": break;//Result of choice 2 button click
@@ -295,10 +345,10 @@ public class Game {
 				break;
 			case "talkMarty"://Indicates which method is being processed
 				switch(yourChoice){//Determines which choice button was clicked
-				case "c1": main(); break;//Result of choice 1 button click
-				case "c2": main(); break;//Result of choice 2 button click
-				case "c3": main(); break;//Result of choice 3 button click
-				case "c4": main(); break;//Result of choice 4 button click
+				case "c1": mainScreen(); break;//Result of choice 1 button click
+				case "c2": mainScreen(); break;//Result of choice 2 button click
+				case "c3": mainScreen(); break;//Result of choice 3 button click
+				case "c4": mainScreen(); break;//Result of choice 4 button click
 				}
 				break;
 			case "attackMarty":
