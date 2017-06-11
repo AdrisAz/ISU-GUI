@@ -9,20 +9,22 @@ import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
-import javax.swing.JScrollPane;
+import javax.swing.JTextArea;
 
 public class Game {
 	
 	JFrame window;
 	Container con;
 	JPanel titleNamePanel, startButtonPanel, mainTextPanel, choiceButtonPanel, playerPanel, imagePanel, hpPanel, weaponPanel;
-	JLabel titleNameLabel, hpLabel, hpLabelNumber, weaponLabel, weaponLabelName, mainTextArea, imageLabel;
+	JLabel titleNameLabel, hpLabel, hpLabelNumber, weaponLabel, weaponLabelName, imageLabel;
 	Font titleFont = new Font("Times New Roman", Font.BOLD, 73);
-	Font normalFont = new Font("Times New Roman", Font.BOLD, 28);
+	Font normalFont = new Font("Times New Roman", Font.BOLD, 25);
+	Font choiceFont = new Font("Times New Roman", Font.BOLD, 22);
 	JButton startButton, choice1, choice2, choice3, choice4;
-	int playerHP;
+	int playerHP, zombieHP;
 	String weapon, position;
 	ImageIcon image;
+	JTextArea mainTextArea;
 	
 	TitleScreenHandler tsHandler = new TitleScreenHandler();
 	ChoiceHandler choiceHandler = new ChoiceHandler();
@@ -35,7 +37,7 @@ public class Game {
 	
 	public Game(){
 		
-		window = new JFrame();
+		window = new JFrame();//Panel initialization 
 		window.setSize(1280,720);//Size of window
 		window.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);//Able to close program
 		window.getContentPane().setBackground(Color.black);//Colour of window
@@ -74,17 +76,18 @@ public class Game {
 		titleNamePanel.setVisible(false);//Disables this panel when createGameScreen is called
 		startButtonPanel.setVisible(false);//Disables this panel when createGameScreen is called
 		mainTextPanel = new JPanel();//Text panel initialization 
-		mainTextPanel.setBounds(20, 100, 1150, 200);//Size and location of panel
+		mainTextPanel.setBounds(80, 100, 1150, 250);//Size and location of panel
 		mainTextPanel.setBackground(Color.black);//Colour of panel
 		mainTextPanel.setOpaque(false);//Set panel to transparent
 		con.add(mainTextPanel);//Add panel to container, (Text panel Layer)
 		
-		mainTextArea = new JLabel();//Initializes placement for text
+		mainTextArea = new JTextArea();//Initializes placement for text
 		mainTextArea.setBounds(100, 100, 1150, 250);//Size and location of area
-		mainTextArea.setBackground(Color.black);//Colour of area
+		mainTextArea.setOpaque(false);//Set panel to transparent
 		mainTextArea.setForeground(Color.white);//Colour of text in area
 		mainTextArea.setFont(normalFont);//Apply font to text
-		JScrollPane scrollPane = new JScrollPane(mainTextArea);//******THE IMPLEMENTATION OF THIS FEATURE IS STILL IN PROGRESS******
+		mainTextArea.setLineWrap(true);//Apply a text wrap function
+		mainTextArea.setWrapStyleWord(true);//Apply a specific (word) text wrap function
 		mainTextPanel.add(mainTextArea);//Add text area to Text panel, (Text area layer)
 		
 		choiceButtonPanel = new JPanel();//Initialization of button frame
@@ -187,7 +190,8 @@ public class Game {
 		
 	}
 	public void playerSetup(){//Initializes the playerSetup method
-		playerHP = 15;//Set initial player's HP
+		playerHP = 100;//Set initial player's HP
+		zombieHP = 100;//Set initial enemy's HP
 		weapon = "Machete";//Set initial player's weapon
 		weaponLabelName.setText(weapon);//Display weapon text on label
 		hpLabelNumber.setText("" + playerHP);//Display integer HP value
@@ -196,21 +200,47 @@ public class Game {
 		mainScreen();//Directs to main method
 	}
 	public void mainScreen(){//Initializes the playerSetup method
-		playerPanel.validate();
-		playerPanel.repaint();
+		playerPanel.validate();//Refreshes the panel
+		playerPanel.repaint();//Tells program that panel needs refreshing
 		choice2.setVisible(false);//Sets the buttons to invisible
 		choice3.setVisible(false);//Sets the buttons to invisible
 		choice4.setVisible(false);//Sets the buttons to invisible
 		position = "mainScreen";//Indication of which method is currently running
-		mainTextArea.setText("You are on a truck going to your best friend Marty B’s house.");//Placement for text
+		mainTextArea.setText("You are on a truck going to your best friend, Marty B’s,"
+				+ "house  when you look out your driver's window to see something weird. "
+				+ "You stop your truck to go out and see what it is and you notice that it is a humanoid figure in the woods."
+				+ "You go to see if he is alright when you notice a foul smell and then see his literal dead stare looking right into your eyes, "
+				+ "you see that he has a large piece of his shoulder bitten off with a disgusting amount of exposed skin. "
+				+ "You ask him what happened but he only answers with a moan.You continue to stare back at the figure, then out of nowhere he attacks. ");//Placement for text
 		choice1.setText("Continue");//Display text on button
 		choice2.setText("");//Display text on button
 		choice3.setText("");//Display text on button
 		choice4.setText("");//Display text on button
 	}
+	public void mainScreencont(){//Initializes the playerSetup method
+		playerPanel.validate();//Refreshes the panel
+		playerPanel.repaint();//Tells program that panel needs refreshing
+		choice2.setVisible(true);//Sets the buttons to invisible
+		choice3.setVisible(true);//Sets the buttons to invisible
+		choice4.setVisible(true);//Sets the buttons to invisible
+		position = "mainScreencont";//Indication of which method is currently running
+		mainTextArea.setText(" He starts running at you with that same dead stare locked onto you as his mouth is wide open."
+				+ " You run as fast as you can back to your truck, lock the door and speed away with no hesitation."
+				+ " When you are in the truck you keep asking yourself what that guy was doing,"
+				+ " then you realize that even though you never thought the day would come,"
+				+ " you realize that the world has gone into a ZOMBIE APOCALYPSE."
+				+ " You keep driving to Marty B’s house that is just 10 minutes away and you see that the road is blocked by hundreds of humanoid figures"
+				+ " similarly to the one that tried to eat you earlier."
+				+ " You step on the brakes before getting any closer and…..You have to make a choice now, do you:");//Placement for text
+		choice1.setText("Try to drive through the zombies");//Display text on button
+		choice2.setText("Turn your truck around and try to find a different route");//Display text on button
+		choice3.setText("Get out of your car and try to make it on foot by walking around the big mob");//Display text on button
+		choice3.setFont(choiceFont);
+		choice4.setText(" Try to fight through the zombies ");//Display text on button 
+	}
 	public void martysHouse(){//Initializes the martysHouse screen method
-		playerPanel.validate();
-		playerPanel.repaint();
+		playerPanel.validate();//Refreshes the panel
+		playerPanel.repaint();//Tells program that panel needs refreshing
 		imagePanel.setBounds(1, -100, 1920, 1080);
 		image = new ImageIcon(".//res//dhouse.jpg");
 		imageLabel.setIcon(image);
@@ -218,7 +248,7 @@ public class Game {
 		choice3.setVisible(true);//Sets the buttons to visible
 		choice4.setVisible(true);//Sets the buttons to visible
 		position = "martysHouse";//Indication of which method is currently running
-		mainTextArea.setText("<html>You are in the Wizard's house.<BR>Marty is on his chair surrounded by zombies charging his really dying hard 9V batteries.<BR>What do you do?<html>");//Placement for text
+		mainTextArea.setText("You are in the Wizard's house.Marty is on his chair surrounded by zombies charging his really dying hard 9V batteries.What do you do?");//Placement for text
 		choice1.setText("Approach the wizard carefully");//Display text on button
 		choice2.setText("Attack him with a fully charged 9V battery");//Display text on button
 		choice3.setText("Disconnect his power");//Display text on button
@@ -226,23 +256,23 @@ public class Game {
 		
 	}
 	public void talkMarty(){//Initializes the talkMarty screen method
-		playerPanel.validate();
-		playerPanel.repaint();
+		playerPanel.validate();//Refreshes the panel
+		playerPanel.repaint();//Tells program that panel needs refreshing
 		position = "talkMarty";//Indication of which method is currently running
-		mainTextArea.setText("<html>Hello PEEPUL!!<BR>Oh sorry, I did not realize that it's just you, (USERNAME)<BR>Would you like to watch an episode of 'Just for laughs' with me?<html>");//Placement for text
+		mainTextArea.setText("Hello PEEPUL!!Oh sorry, I did not realize that it's just you, (USERNAME)Would you like to watch an episode of 'Just for laughs' with me?");//Placement for text
 		choice1.setText("RUNNNNNNNN!!!!!!!");//Display text on button
 		choice2.setText("RUNNNNNNNN!!!!!!!");//Display text on button
 		choice3.setText("RUNNNNNNNN!!!!!!!");//Display text on button
 		choice4.setText("RUNNNNNNNN!!!!!!!");//Display text on button
 	}
 	public void attackMarty(){//Initializes the attackMarty screen method
-		playerPanel.validate();
-		playerPanel.repaint();
+		playerPanel.validate();//Refreshes the panel
+		playerPanel.repaint();//Tells program that panel needs refreshing
 		choice2.setVisible(false);//Sets the buttons to invisible
 		choice3.setVisible(false);//Sets the buttons to invisible
 		choice4.setVisible(false);//Sets the buttons to invisible
 		position = "attackMarty";//Indication of which method is currently running
-		mainTextArea.setText("<html>Ok, but like SERIOUSLY?<BR>Do you ACTUALLY think you can beat the MASTER WIZAAARRD, MARTY B. HIMSELF?<BR>(You sustain the wraith of Marty B's powers and lose 3 health points)<html>");//Placement for text
+		mainTextArea.setText("Ok, but like SERIOUSLY?Do you ACTUALLY think you can beat the MASTER WIZAAARRD, MARTY B. HIMSELF?(You sustain the wraith of Marty B's powers and lose 3 health points)");//Placement for text
 		playerHP = playerHP -3;//Change of integer HP value
 		hpLabelNumber.setText(""+playerHP);//Display updated HP value
 		choice1.setText("Continue");//Display text on button
@@ -251,27 +281,27 @@ public class Game {
 		choice4.setText("");//Display text on button
 	}
 	public void forest(){//Initializes the forest screen method
-		playerPanel.validate();
-		playerPanel.repaint();
+		playerPanel.validate();//Refreshes the panel
+		playerPanel.repaint();//Tells program that panel needs refreshing
 		choice2.setVisible(true);//Sets the buttons to visible
 		choice3.setVisible(true);//Sets the buttons to visible
 		choice4.setVisible(true);//Sets the buttons to visible
 		position = "forest";//Indication of which method is currently running
-		mainTextArea.setText("<html>You run as fast as possible deep into the forest behind Marty B's cabin.<BR>Which way do you proceed to run?<html>");//Placement for text
+		mainTextArea.setText("You run as fast as possible deep into the forest behind Marty B's cabin.Which way do you proceed to run?");//Placement for text
 		choice1.setText("Just keep running straight far away from Marty B. as possible");//Display text on button
 		choice2.setText("Turn left and continue running");//Display text on button
 		choice3.setText("Turn right and continue running");//Display text on button
 		choice4.setText("I regret my decision and think Marty B. should be given a chance");//Display text on button
 	}
 	public void straightRun(){//Initializes the straightRun screen method
-		playerPanel.validate();
-		playerPanel.repaint();
+		playerPanel.validate();//Refreshes the panel
+		playerPanel.repaint();//Tells program that panel needs refreshing
 		choice2.setVisible(false);//Sets the buttons to invisible
 		choice3.setVisible(false);//Sets the buttons to invisible
 		choice4.setVisible(false);//Sets the buttons to invisible
 		position = "straightRun";//Indication of which method is currently running
-		mainTextArea.setText("<html>You find a Monster drink possibly left behind by the last person that ventured here.<BR>(You gain 2 health points)<html>");//Placement for text
-		playerHP = playerHP +2;//Change of integer HP value
+		mainTextArea.setText("You find a Monster drink possibly left behind by the last person that ventured here.(You gain 2 health points)");//Placement for text
+		playerHP = playerHP + 2;//Change of integer HP value
 		hpLabelNumber.setText(""+playerHP);//Display updated HP value
 		choice1.setText("Resume your running");//Display text on button
 		choice2.setText("");//Display text on button
@@ -280,29 +310,103 @@ public class Game {
 		
 	}
 	public void leftRun(){//Initializes the leftRun screen method
-		playerPanel.validate();
-		playerPanel.repaint();
+		playerPanel.validate();//Refreshes the panel
+		playerPanel.repaint();//Tells program that panel needs refreshing
 		choice2.setVisible(true);//Sets the buttons to visible
 		choice3.setVisible(true);//Sets the buttons to visible
 		choice4.setVisible(true);//Sets the buttons to visible
 		position = "leftRun";//Indication of which method is currently running
-		mainTextArea.setText("<html>As you run for your life, you notice something silver glimering under some leaves on the ground.<BR> (You have obtained a magical sword)<html>");//Placement for text
-		weapon = "Magic sword";//Set player's new weapon
+		mainTextArea.setText("As you run for your life, you notice something silver glimering under some leaves on the ground. (You have obtained a magical sword)");//Placement for text
+		weapon = "Magic Sword";//Set player's new weapon
 		weaponLabelName.setText(weapon);//Display weapon text on label
-		choice1.setText("");//Display text on button
+		choice1.setText("Go back to the forest");//Display text on button
 		choice2.setText("");//Display text on button
 		choice3.setText("");//Display text on button
 		choice4.setText("");//Display text on button
 	}
 	public void rightRun(){//Initializes the rightRun screen method
-		playerPanel.validate();
-		playerPanel.repaint();
+		playerPanel.validate();//Refreshes the panel
+		playerPanel.repaint();//Tells program that panel needs refreshing
 		position = "rightRun";//Indication of which method is currently running
-		mainTextArea.setText("<html><html>");//Placement for text
+		mainTextArea.setText("A zombie jumps out of the nearby bush and attacks you!");//Placement for text
+		choice1.setText("Fight it");//Display text on button
+		choice2.setText("Run");//Display text on button
+		choice3.setText("");//Display text on button
+		choice4.setText("");//Display text on button
+	}
+	public void fight(){//Initializes the fight screen method
+		playerPanel.validate();//Refreshes the panel
+		playerPanel.repaint();//Tells program that panel needs refreshing
+		position = "fight";//Indication of which method is currently running
+		mainTextArea.setText("Zombie HP: " + zombieHP + "\n\nWhat do you do?");
+		choice1.setText("Attack with your weapon");//Display text on button
+		choice2.setText("Run");//Display text on button
+		choice3.setText("");//Display text on button
+		choice4.setText("");//Display text on button
+	}
+	public void playerAttack(){//Initializes the player attack screen method
+		playerPanel.validate();//Refreshes the panel
+		playerPanel.repaint();//Tells program that panel needs refreshing
+		position = "playerAttack";//Indication of which method is currently running
+		
+		int playerDamage = 0;//Set variable for damage player does
+		
+		if(weapon.equals("Machete")){//Indicating that if the Machete is equipped then continue below
+			playerDamage = new java.util.Random().nextInt(50);//Allows to randomly pick the damage value that player does (0-49)
+		}
+		else if (weapon.equals("Magic Sword")){//Indicating that if the Magic Sword is equipped then continue below
+			playerDamage = new java.util.Random().nextInt(80);//Allows to randomly pick the damage value that player does (0-79)
+		}
+		
+		mainTextArea.setText("You attacked the zombie and dealt " + playerDamage + " damage");//Placement for text
+		
+		zombieHP = zombieHP - playerDamage;//Calculation for enemy's health
+		
+		choice1.setText("Continue");//Display text on button
+		choice2.setText("");//Display text on button
+		choice3.setText("");//Display text on button
+		choice4.setText("");//Display text on button
+	}
+	public void zombieAttack(){//Initializes the zombie attack screen method
+		position = "zombieAttack";//Indication of which method is currently running
+		
+		int zombieDamage = 0;//Set variable for damage zombie does
+		
+		zombieDamage = new java.util.Random().nextInt(25);//Allows to randomly pick the damage value that zombie does (0-24)
+		
+		mainTextArea.setText("The zombie attacked and dealt " + zombieDamage + " damage");//Placement for text
+		
+		playerHP = playerHP - zombieDamage;//Calculation for player's health
+		hpLabelNumber.setText(""+playerHP);//Display updated HP value
+		
+		choice1.setText("Continue");//Display text on button
+		choice2.setText("");//Display text on button
+		choice3.setText("");//Display text on button
+		choice4.setText("");//Display text on button
+	}
+	public void win(){//Initializes the win screen method
+		position = "win";//Indication of which method is currently running
+		
+		mainTextArea.setText("You have killed the zombie.");//Placement for text
+	
+		choice1.setText("Run back to the forest");//Display text on button
+		choice2.setText("");//Display text on button
+		choice3.setText("");//Display text on button
+		choice4.setText("");//Display text on button
+	}
+	public void lose(){//Initializes the lose screen method
+		position = "lose";//Indication of which method is currently running
+		
+		mainTextArea.setText("You are dead.\n\nGAME OVER");//Placement for text
+		
 		choice1.setText("");//Display text on button
 		choice2.setText("");//Display text on button
 		choice3.setText("");//Display text on button
 		choice4.setText("");//Display text on button
+		choice1.setVisible(false);//Sets the buttons to invisible
+		choice2.setVisible(false);//Sets the buttons to invisible
+		choice3.setVisible(false);//Sets the buttons to invisible
+		choice4.setVisible(false);//Sets the buttons to invisible
 	}
 	
 	
@@ -329,10 +433,18 @@ public class Game {
 			switch(position){//Determines which method is being processed
 			case "mainScreen"://Indicates which method is being processed
 				switch(yourChoice){//Determines which choice button was clicked
-				case "c1": martysHouse(); break;//Result of choice 1 button click
+				case "c1": mainScreencont(); break;//Result of choice 1 button click
 				case "c2": break;//Result of choice 2 button click
 				case "c3": break;//Result of choice 3 button click
 				case "c4": break;//Result of choice 4 button click
+				} 
+				break;
+			case "mainScreencont"://Indicates which method is being processed
+				switch(yourChoice){//Determines which choice button was clicked
+				case "c1": martysHouse(); break;//Result of choice 1 button click
+				case "c2":  martysHouse();break;//Result of choice 2 button click
+				case "c3":  martysHouse();break;//Result of choice 3 button click
+				case "c4":  martysHouse();break;//Result of choice 4 button click
 				} 
 				break;
 			case "martysHouse"://Indicates which method is being processed
@@ -351,20 +463,82 @@ public class Game {
 				case "c4": mainScreen(); break;//Result of choice 4 button click
 				}
 				break;
-			case "attackMarty":
-				switch(yourChoice){
+			case "attackMarty"://Indicates which method is being processed
+				switch(yourChoice){//Determines which choice button was clicked
 				case "c1":  break;//Result of choice 1 button click
 				case "c2":  break;//Result of choice 2 button click
 				case "c3":  break;//Result of choice 3 button click
 				case "c4":  break;//Result of choice 4 button click
 				}
 				break;
-			case "forest":
-				switch(yourChoice){
+			case "forest"://Indicates which method is being processed
+				switch(yourChoice){//Determines which choice button was clicked
 				case "c1": straightRun(); break;//Result of choice 1 button click
 				case "c2": leftRun(); break;//Result of choice 2 button click
-				case "c3":  break;//Result of choice 3 button click
+				case "c3": rightRun(); break;//Result of choice 3 button click
 				case "c4": attackMarty(); break;//Result of choice 4 button click
+				}
+				break;
+			case "leftRun"://Indicates which method is being processed
+				switch(yourChoice){//Determines which choice button was clicked
+				case "c1": forest(); break;//Result of choice 1 button click
+				case "c2":  break;//Result of choice 2 button click
+				case "c3":  break;//Result of choice 3 button click
+				case "c4":  break;//Result of choice 4 button click
+				}
+				break;
+			case "rightRun"://Indicates which method is being processed
+				switch(yourChoice){//Determines which choice button was clicked
+				case "c1": fight(); break;//Result of choice 1 button click
+				case "c2": forest(); break;//Result of choice 2 button click
+				case "c3":  break;//Result of choice 3 button click
+				case "c4":  break;//Result of choice 4 button click
+				}
+				break;
+			case "fight"://Indicates which method is being processed
+				switch(yourChoice){//Determines which choice button was clicked
+				case "c1": playerAttack(); break;//Result of choice 1 button click
+				case "c2": forest(); break;//Result of choice 2 button click
+				case "c3":  break;//Result of choice 3 button click
+				case "c4":  break;//Result of choice 4 button click
+				}
+				break;
+			case "playerAttack"://Indicates which method is being processed
+				switch(yourChoice){//Determines which choice button was clicked
+				case "c1": 
+					if(zombieHP<1){//Checks if zombie's health is less than 1
+						win();//If health less than one, then win method is called
+					}
+					else{
+						zombieAttack();//If health more than one, then zombie attack method is called
+					}
+							break;//Result of choice 1 button click
+				case "c2":  break;//Result of choice 2 button click
+				case "c3":  break;//Result of choice 3 button click
+				case "c4":  break;//Result of choice 4 button click
+				}
+				break;
+			case "zombieAttack"://Indicates which method is being processed
+				switch(yourChoice){//Determines which choice button was clicked
+				case "c1":  
+					if(playerHP<1){//Checks if player's health is less than 1
+						lose();//If health less than one, then lose method is called
+					}
+					else{
+						fight();//If health more than one, then fight method is called
+					}
+							break;//Result of choice 1 button click
+				case "c2":  break;//Result of choice 2 button click
+				case "c3":  break;//Result of choice 3 button click
+				case "c4":  break;//Result of choice 4 button click
+				}
+				break;
+			case "win"://Indicates which method is being processed
+				switch(yourChoice){//Determines which choice button was clicked
+				case "c1": forest(); break;//Result of choice 1 button click
+				case "c2":  break;//Result of choice 2 button click
+				case "c3":  break;//Result of choice 3 button click
+				case "c4":  break;//Result of choice 4 button click
 				}
 			}
 		}
