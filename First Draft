@@ -10,6 +10,7 @@ import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JTextArea;
+import java.util.*;
 
 public class Game {
 	
@@ -132,14 +133,14 @@ public class Game {
 		choice4.setActionCommand("c4");//Identifies to program which specific choice this button correlates to
 		choiceButtonPanel.add(choice4);//Add Button on panel
 		
-		hpPanel = new JPanel();
+		hpPanel = new JPanel();//Panel initialization to hold player health information
 		hpPanel.setBounds(300, 20, 800, 50);//Size and location of panel
 		hpPanel.setOpaque(false);//Set panel to transparent
 		hpPanel.setBackground(Color.black);//Colour of panel
 		hpPanel.setLayout(new GridLayout(1,4));//Layout of panel to four columns
 		con.add(hpPanel);//Add panel to container
 		
-		weaponPanel = new JPanel();
+		weaponPanel = new JPanel();//Panel initialization to hold weapon information
 		weaponPanel.setBounds(640, 20, 800, 50);//Size and location of panel
 		weaponPanel.setOpaque(false);//Set panel to transparent
 		weaponPanel.setBackground(Color.black);//Colour of panel
@@ -173,18 +174,18 @@ public class Game {
 		weaponLabelName.setForeground(Color.white);//Font colour
 		playerPanel.add(weaponLabelName);//Add label to panel
 		
-		imagePanel = new JPanel();
-		imagePanel.setBounds(1, 1, 1280, 720);
-		imagePanel.setBackground(Color.white);
+		imagePanel = new JPanel();//Panel initialization to hold weapon information
+		imagePanel.setBounds(1, 1, 1280, 720);//Sets size of image panel
+		imagePanel.setBackground(Color.white);//Sets image panel background colour
 		
-		imageLabel = new JLabel();
+		imageLabel = new JLabel();//
 		
 		image = new ImageIcon(".//res//dforest.jpg");
 		
 		imageLabel.setIcon(image);
 		imagePanel.add(imageLabel);
 		
-		con.add(imagePanel);
+		con.add(imagePanel);//Adds image panel to the window
 		
 		playerSetup();//Directs program to playerSetup method
 		
@@ -349,13 +350,15 @@ public class Game {
 		playerPanel.repaint();//Tells program that panel needs refreshing
 		position = "playerAttack";//Indication of which method is currently running
 		
+		Random rand=new Random();
+		
 		int playerDamage = 0;//Set variable for damage player does
 		
 		if(weapon.equals("Machete")){//Indicating that if the Machete is equipped then continue below
 			playerDamage = new java.util.Random().nextInt(50);//Allows to randomly pick the damage value that player does (0-49)
 		}
 		else if (weapon.equals("Magic Sword")){//Indicating that if the Magic Sword is equipped then continue below
-			playerDamage = new java.util.Random().nextInt(80);//Allows to randomly pick the damage value that player does (0-79)
+			playerDamage = rand.nextInt(40) + 5;//Allows to randomly pick the damage value that player does (0-79)
 		}
 		
 		mainTextArea.setText("You attacked the zombie and dealt " + playerDamage + " damage");//Placement for text
@@ -368,11 +371,13 @@ public class Game {
 		choice4.setText("");//Display text on button
 	}
 	public void zombieAttack(){//Initializes the zombie attack screen method
+		playerPanel.validate();//Refreshes the panel
+		playerPanel.repaint();//Tells program that panel needs refreshing
 		position = "zombieAttack";//Indication of which method is currently running
 		
 		int zombieDamage = 0;//Set variable for damage zombie does
 		
-		zombieDamage = new java.util.Random().nextInt(25);//Allows to randomly pick the damage value that zombie does (0-24)
+		zombieDamage = new java.util.Random().nextInt(30);//Allows to randomly pick the damage value that zombie does (0-29)
 		
 		mainTextArea.setText("The zombie attacked and dealt " + zombieDamage + " damage");//Placement for text
 		
@@ -385,6 +390,8 @@ public class Game {
 		choice4.setText("");//Display text on button
 	}
 	public void win(){//Initializes the win screen method
+		playerPanel.validate();//Refreshes the panel
+		playerPanel.repaint();//Tells program that panel needs refreshing
 		position = "win";//Indication of which method is currently running
 		
 		mainTextArea.setText("You have killed the zombie.");//Placement for text
@@ -395,6 +402,8 @@ public class Game {
 		choice4.setText("");//Display text on button
 	}
 	public void lose(){//Initializes the lose screen method
+		playerPanel.validate();//Refreshes the panel
+		playerPanel.repaint();//Tells program that panel needs refreshing
 		position = "lose";//Indication of which method is currently running
 		
 		mainTextArea.setText("You are dead.\n\nGAME OVER");//Placement for text
